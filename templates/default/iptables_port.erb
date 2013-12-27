@@ -1,0 +1,2 @@
+<% if @ip_addr -%># <%= @target %> <% if @port %>port <%= @port %> <% else -%>'all' <% end -%>from <%= @ip_addr %> only <% else -%># <%= @target %> <% if @port -%>port <%= @port %> <% else -%>all ports <% end -%>to any <% end -%>
+-A FWR <% if @ip_addr -%>--source <%= @ip_addr %> <% end -%>--protocol <%= @protocol %> <% if @port -%>--dport <%= @port %> <% end -%>-j <%= @target %>
