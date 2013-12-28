@@ -80,6 +80,11 @@ attribute "sys_firewall/rule/ip_address",
 attribute "sys_firewall/rule_list/file",
   :display_name => "File location for rule import",
   :description =>
-    "A full path to a local or remote YAML file containing rules",
+    "A full path to a remote YAML file containing firewall rules." +
+    " The file must be an Array of Hashes with a key/value pairs. e.g:" +
+    "---\n- :name: office_ssh\n  :enable: true\n  :ports: 20\n" +
+    "  :ip_address: 8.8.4.4\n  :protocol: tcp\n  :target: ACCEPT\n" +
+    "- :name: public www\n  :enable: true\n  :ports: 80, 443\n" +
+    "  :ip_address: any\n  :protocol: both\n  :target: ACCEPT\n",
   :default => "",
   :recipes => ["sys_firewall::import_rule_list"]
