@@ -81,7 +81,7 @@ action :update do
         ip_list.each do |ip|
           Chef::Log.info "  Updating iptables rule for IP Address: #{ip}"
 
-          rule = "port_#{port}"
+          rule = target != 'ACCEPT' ? "0port_#{port}" : "port_#{port}"
           rule << "_#{ip.gsub('/', '_')}_#{protocol}"
 
           # Programatically execute template resource
